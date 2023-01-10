@@ -7,7 +7,7 @@ function Login() {
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} alt='logo'></img>
         <form>
           <label htmlFor="fname">Email</label>
           <br />
@@ -32,7 +32,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        <a href='/'>Signup</a>
       </div>
     </div>
   );
