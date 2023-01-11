@@ -105,7 +105,9 @@
   font-weight: bolder;
   margin-right: 5px;
 }
-
+.loginPage{
+  cursor: pointer;
+}
 .loginPage hr {
   margin: 0;
   background-color: black;
@@ -114,6 +116,7 @@
 
 .loginPage a{
   text-decoration: none;
+  
 }
 
 .sellMenu {
@@ -161,4 +164,8 @@
   .sellMenu {
     display: none;
   }
+}
+
+.logout{
+  cursor: pointer;
 }

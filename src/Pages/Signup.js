@@ -1,11 +1,14 @@
 import React from 'react';
 
 import Signup from '../Components/Signup/Signup';
+import Spinner from '../Store/SpinnerContext';
 
 function SignupPage() {
   return (
     <div>
-      <Signup />
+      <Spinner>
+        <Signup />
+      </Spinner>
     </div>
   );
 }

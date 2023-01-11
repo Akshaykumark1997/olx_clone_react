@@ -1,17 +1,22 @@
 import React, { useState,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../olx-logo.png';
-import { FirebaseContext } from '../../Store/FirebaseContext';
+import { FirebaseContext } from '../../Store/Context';
+import { SpinnerContext } from '../../Store/SpinnerContext';
+import Spinner from '../../Components/Spinner/Spinner';
 import './Signup.css';
+
 
 export default function Signup() {
   const [userName,setUserName] = useState('');
   const [email,setEmail] = useState('');
   const [phone,setPhone] = useState('');
   const [password,setPassword] = useState('');
-  const {firebase} = useContext(FirebaseContext)
+  const {firebase} = useContext(FirebaseContext);
+  const {spinner,setSpinner} = useContext(SpinnerContext);
   const history = useHistory();
   const handleSubmit = (e) =>{
+    setSpinner(true);
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=>{
       result.user.updateProfile({displayName:userName}).then(()=>{
@@ -20,13 +25,16 @@ export default function Signup() {
           userName:userName,
           phone:phone
         }).then(()=>{
+          setSpinner(false);
           history.push('/login');
         })
       })
     })
   }
+  
   return (
     <div>
+      {spinner && <Spinner/> }
       <div className="signupParentDiv">
         <img width="200px" height="200px" src={Logo} alt='logo' ></img>
         <form onSubmit={handleSubmit}>
@@ -81,7 +89,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a href='/'>Login</a>
+        <a href='/login'>Login</a>
       </div>
     </div>
   );
